@@ -1,10 +1,6 @@
-variable <- "Hi there! Welcome to RevBayes! I am now going to read in some test data."
-
-variable
-
 molecular <- readDiscreteCharacterData("data/example_file.nex")
 
 success <- "Congratulations, you set up your scripts and code directories correctly."
 
-success
-q()
+print(success)
+

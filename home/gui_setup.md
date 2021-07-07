@@ -54,7 +54,7 @@ install.packages("devtools")
 Use `devtools` to install RevKnitr:
 
 ```
-devtools::install_github("revbayes/RevKnitr")
+devtools::install_github("revbayes/Revticulate")
 ```
 
 Once installation is complete, restart RStudio. `rb` should now be available as an RMarkdown language.
@@ -64,10 +64,11 @@ the current working directory and where RevBayes is stored. For example, a markd
 
 ```
 ```{r setup}
-knitr::opts_chunk$set(root.dir = "~/projects/RevBayesWork")
-knitr::opts_chunk$set(engine.pat="~/software/rb")
+library(Revticulate)
+InitRev("/Users/software/rb")
+KnitRev()
 ```
 
-Would tell RMarkdown that the home, or current working directory, is in a directory called "RevBayesWork",
-and that the executeable itself is in a folder called software. In this way, the working directory is set
-for the entire document.
+
+Would tell RMarkdown that the RevBayes executeable itself is in a folder called software. Once this cell is added to a Markdown cell, RevBayes can be rendered via Knitr. RevBayes can also be used interactively in the R console via the function `RepRev`. See the R package
+[`Revticulate`](https://github.com/revbayes/Revticulate) for more information on using this R package.

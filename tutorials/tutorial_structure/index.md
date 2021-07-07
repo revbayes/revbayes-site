@@ -326,7 +326,7 @@ The first cell of an RMarkdown notebook.
 
 We will edit this cell to add two variables, the root directory and the engine.path. The working directory tells R what directory you want to work in. We will set this equal to the directory to which we downloaded the data and scripts. For example, if the directory structure if as shown in figure {% ref example %}, this line will be `knitr::opts_chunk$set(root.dir = "~/projects/tutorials/tutorial_structure/)` on Mac and Linux. On PC, it will be `setwd("c:\\april\\tutorials\\tutorial_structure")`.
 
-The engine.path is where RevBayes is on your computer. If my copy of RevBayes is in a directory called "software" in my user home, my enine path will be `knitr::opts_chunk$set(engine.pat="~/software/rb")` on Mac and Linux or `knitr::opts_chunk$set(engine.path="c:\\april\\software\\rb")` on PC.
+The engine.path is where RevBayes is on your computer. If my copy of RevBayes is in a directory called "software" in my user home, my enine path will be `InitRev("/User/software/rb")` on Mac and Linux or `InitRev(engine.path="c:\\User\\software\\rb")` on PC.
 
 The appearance of the setup cell can be seen below.
 
@@ -337,26 +337,17 @@ This setup cell shows an example of setting the work directory and the engine pa
 {% endfigcaption %}
 {% endfigure %}
 
-
-
 Run this chunk by clicking the green arrow in the upper-left hand corner of the cell.
 
 Next, you will note other RMarkdown chunks in the document. By changing the `r` in the curly braces to `rb`, we can run RevBayes in a markdown document. By choosing `r` or `rb`, we can use both the R programming language and RevBayes in the same notebook.
 
-{% figure RBMkd %}
-<img src="figures/RbMarkdown.png" width="300">
-{% figcaption %}
-This is an example of a Rev Markdown cell inside an RMarkdown document.
-{% endfigcaption %}
-{% endfigure %}
-
+Next, we'll try defining a variable and reading in some RevBayes code.
 
 ```{rb}
 variable <- "Hi there! Welcome to RevBayes! I am now going to read in some test data."
-
 variable
+source("scripts/test.Rev")
 ```
-
 Run it by clicking the green arrow. If this execute correctly, you will receive the message.
 
 ```
@@ -373,7 +364,6 @@ molecular <- readDiscreteCharacterData("data/example_file.nex")
 success <- "Congratulations, you set up your scripts and code directories correctly."
 
 success
-q()
 ```
 
 If this executes correctly, you will receive the output:
@@ -383,16 +373,11 @@ If this executes correctly, you will receive the output:
    Congratulations, you set up your scripts and code directories correctly.
 ```
 
-If you have made a mistake and need to erase previous output, you can add a flag to the markdown cells that refreshes previously-entered commands, as shown in figure {% ref mistake %}.
+If you have made a mistake and need to erase previous output, you can use the function `ClearRev()` to erase your mistakes.
 
-
-{% figure mistake %}
-<img src="figures/freshchunkrb.png" width="300">
-{% figcaption %}
-This is an example of how to reset after making a mistake.
-{% endfigcaption %}
-{% endfigure %}
-
+```{r}
+ClearRev()
+```
 
 Lastly, the entire document can be `knitted` to an output file. At the top of your screen, there is a button labeled Knit. This allows you to run all of your code and save the text, output, and figures to html, PDF, and other formats.
 
