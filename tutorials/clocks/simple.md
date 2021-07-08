@@ -731,9 +731,11 @@ be sure to save the sampled trees to file. The `mnModel()` function will log all
 numerical parameters, but not the tree. We can use the `mnFile()` monitor to write our 
 MCMC samples of the tree. 
 
-    monitors[1] = mnModel(filename="output/TimeTree_bears_mcmc.log", printgen=10)
-    monitors[2] = mnFile(filename="output/TimeTree_bears_mcmc.trees", printgen=10, timetree)
-    monitors[3] = mnScreen(printgen=100, root_time)
+    monitors.append(mnModel(filename="output/TimetTree_bears_mcmc.log",
+    printgen=10))
+    monitors.append(mnFile(filename="output/TimeTree_bears_mcmc.trees",
+    printgen=10, timetree))
+    monitors.append(mnScreen(printgen=10, root_time, tmrca_Ursidae))
 
 Create the MCMC object:
 

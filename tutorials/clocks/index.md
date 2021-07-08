@@ -721,7 +721,7 @@ file. Thus, every variable that you gave a name in your model files will
 be written to your log file. This makes it very easy to get an analysis
 going, but can generate very large files with a lot of redundant output.
 
-    monitors[1] = mnModel(filename="output/TimetTree_bears_mcmc.log", printgen=10)
+    monitors.append(mnModel(filename="output/TimetTree_bears_mcmc.log", printgen=10))
 
 If the model monitor is too verbose for your needs, you should use the
 file monitor instead: `mnFile`. For this monitor, you have to provide
@@ -737,7 +737,7 @@ That is because tools for reading MCMC log files—like
 load files with non-numerical states. Therefore, you must save the
 sampled trees to a different file.
 
-    monitors[2] = mnFile(filename="output/TimeTree_bears_mcmc.trees", printgen=10, timetree)
+    monitors.append(mnFile(filename="output/TimeTree_bears_mcmc.trees", printgen=10, timetree))
 
 Finally, we will create a monitor in charge of writing information to
 the screen: `mnScreen`. We will report the root age and the age of the
@@ -746,7 +746,7 @@ to see in your screen output (e.g., the mean rate of the UCLN or ACLN
 model), feel free to add them to the list of parameters give to this
 model.
 
-    monitors[3] = mnScreen(printgen=10, root_time, tmrca_Ursidae)
+    monitors.append(mnScreen(printgen=10, root_time, tmrca_Ursidae))
 
 ***Setting-Up & Executing the MCMC***
 
